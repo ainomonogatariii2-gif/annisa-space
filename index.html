@@ -18,49 +18,44 @@
   font-family:'Poppins', sans-serif;
 }
 
+html, body{
+  width:100%;
+  overflow-x:hidden;
+}
+
 body{
   min-height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
-  overflow-x:hidden;
   background:#000;
+  overflow-x:hidden;
+  padding:20px;
+  position:relative;
   animation:pageFade 1.2s ease;
-  padding:40px 0;
   cursor:url("https://cur.cursors-4u.net/cursors/cur-13/cur1160.cur"), auto;
 }
 
+/* noise */
 body::after{
   content:"";
   position:fixed;
   inset:0;
   background-image:url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity:0.07;
+  opacity:.07;
   pointer-events:none;
   z-index:999;
 }
 
+/* background */
 .bg{
   position:fixed;
   inset:0;
-  background-image:url("bg.jpg");
-  background-size:cover;
-  background-position:center;
-  filter:blur(8px) brightness(0.7);
+  background:url("bg.jpg") center/cover;
+  filter:blur(8px) brightness(.7);
   transform:scale(1.1);
   z-index:-2;
   transition:transform .2s ease;
-}
-
-.glow{
-  position:fixed;
-  width:300px;
-  height:300px;
-  border-radius:50%;
-  background:rgba(255,192,203,0.12);
-  filter:blur(100px);
-  z-index:-3;
-  animation:moveGlow 10s infinite alternate ease-in-out;
 }
 
 .overlay{
@@ -70,41 +65,45 @@ body::after{
   z-index:-1;
 }
 
+/* glow */
+.glow{
+  position:fixed;
+  width:300px;
+  height:300px;
+  border-radius:50%;
+  background:rgba(255,192,203,.12);
+  filter:blur(100px);
+  z-index:-3;
+  animation:moveGlow 10s infinite alternate ease-in-out;
+}
+
+/* hearts */
 .heart{
   position:fixed;
   color:pink;
   font-size:14px;
-  animation:heartFloat linear infinite;
   opacity:.7;
   z-index:-1;
+  animation:heartFloat linear infinite;
 }
 
-@keyframes heartFloat{
-  from{
-    transform:translateY(100vh);
-  }
-
-  to{
-    transform:translateY(-120px);
-  }
-}
-
+/* card */
 .card{
-  width:340px;
+  width:100%;
+  max-width:340px;
   padding:32px;
   border-radius:28px;
   text-align:center;
   color:#fff;
   background:rgba(255,255,255,.12);
   backdrop-filter:blur(24px);
+  border:1px solid rgba(255,255,255,.2);
   box-shadow:
   0 10px 60px rgba(255,255,255,.08),
   0 0 40px rgba(255,105,180,.15);
-
-  border:1px solid rgba(255,255,255,0.2);
-  animation:fade .9s ease;
-  transition:all .35s ease;
   position:relative;
+  overflow:hidden;
+  animation:fade .9s ease;
 }
 
 .card::after{
@@ -113,17 +112,14 @@ body::after{
   inset:0;
   border-radius:28px;
   background:linear-gradient(
-  to bottom,
-  rgba(255,255,255,0.08),
-  transparent
+    to bottom,
+    rgba(255,255,255,.08),
+    transparent
   );
   pointer-events:none;
 }
 
-.card:hover{
-  transform:translateY(-4px);
-}
-
+/* profile */
 .profile{
   width:120px;
   height:120px;
@@ -132,13 +128,14 @@ body::after{
   border:3px solid #fff;
   margin-bottom:14px;
   box-shadow:0 0 25px rgba(255,192,203,.5);
-  transition:all .35s ease;
+  transition:.35s ease;
 }
 
 .profile:hover{
   transform:scale(1.05) rotate(2deg);
 }
 
+/* text */
 h1{
   font-size:26px;
   margin-bottom:4px;
@@ -151,6 +148,7 @@ h1{
   margin-bottom:18px;
 }
 
+/* buttons */
 .btn{
   display:flex;
   align-items:center;
@@ -172,27 +170,59 @@ h1{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(120deg, #ff9ecf, #cdb4ff);
+  background:linear-gradient(120deg,#ff9ecf,#cdb4ff);
   opacity:0;
   transition:.25s;
   z-index:-1;
 }
 
 .btn:hover{
-  transform:scale(1.05);
+  transform:scale(1.03);
   color:#fff;
-  box-shadow:0 0 15px rgba(255,105,180,0.6);
+  box-shadow:0 0 15px rgba(255,105,180,.6);
 }
 
 .btn:hover::before{
   opacity:1;
 }
 
+/* music button */
+.music-btn{
+  margin-top:10px;
+  padding:8px 16px;
+  border:none;
+  border-radius:18px;
+  background:#fff;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.music-btn:hover{
+  transform:scale(1.03);
+}
+
+/* quote */
+.quote{
+  margin-top:14px;
+  color:#f7d8e5;
+  font-size:12px;
+  font-style:italic;
+}
+
+/* clock */
+.clock{
+  margin-top:10px;
+  color:#ddd;
+  font-size:13px;
+  letter-spacing:1px;
+}
+
+/* spotify */
 .spotify-box{
   margin-top:18px;
   border-radius:18px;
   overflow:hidden;
-  box-shadow:0 0 20px rgba(255,255,255,0.08);
+  box-shadow:0 0 20px rgba(255,255,255,.08);
   position:relative;
 }
 
@@ -203,12 +233,13 @@ h1{
   left:12px;
   font-size:11px;
   color:#ffd6e7;
-  background:rgba(0,0,0,0.4);
+  background:rgba(0,0,0,.4);
   padding:4px 8px;
   border-radius:10px;
   z-index:2;
 }
 
+/* visualizer */
 .visualizer{
   display:flex;
   justify-content:center;
@@ -220,7 +251,7 @@ h1{
 .bar{
   width:4px;
   height:18px;
-  background:white;
+  background:#fff;
   border-radius:10px;
   animation:bounce 1s infinite ease-in-out;
 }
@@ -237,44 +268,7 @@ h1{
   animation-delay:.6s;
 }
 
-@keyframes bounce{
-  0%,100%{
-    height:10px;
-  }
-
-  50%{
-    height:28px;
-  }
-}
-
-.music-btn{
-  margin-top:10px;
-  padding:8px 16px;
-  border:none;
-  border-radius:18px;
-  background:#fff;
-  cursor:pointer;
-  transition:all .3s ease;
-}
-
-.music-btn:hover{
-  transform:scale(1.05);
-}
-
-.quote{
-  margin-top:14px;
-  color:#f7d8e5;
-  font-size:12px;
-  font-style:italic;
-}
-
-.clock{
-  margin-top:10px;
-  color:#ddd;
-  font-size:13px;
-  letter-spacing:1px;
-}
-
+/* message */
 .message-box{
   margin-top:18px;
   display:flex;
@@ -288,8 +282,8 @@ h1{
   border:none;
   outline:none;
   border-radius:16px;
-  background:rgba(255,255,255,0.12);
-  color:white;
+  background:rgba(255,255,255,.12);
+  color:#fff;
   backdrop-filter:blur(10px);
 }
 
@@ -301,8 +295,8 @@ h1{
   padding:10px;
   border:none;
   border-radius:16px;
-  background:white;
-  color:black;
+  background:#fff;
+  color:#000;
   cursor:pointer;
   transition:.3s;
   font-weight:500;
@@ -310,16 +304,17 @@ h1{
 
 .send-btn:hover{
   transform:scale(1.03);
-  box-shadow:0 0 15px rgba(255,105,180,0.5);
+  box-shadow:0 0 15px rgba(255,105,180,.5);
 }
 
+/* popup */
 .popup{
   position:fixed;
   bottom:20px;
   right:20px;
-  background:rgba(255,255,255,0.12);
+  background:rgba(255,255,255,.12);
   backdrop-filter:blur(12px);
-  color:white;
+  color:#fff;
   padding:12px 18px;
   border-radius:16px;
   opacity:0;
@@ -333,6 +328,7 @@ h1{
   transform:translateY(0);
 }
 
+/* sparkles */
 .sparkle{
   position:absolute;
   width:6px;
@@ -343,20 +339,35 @@ h1{
   animation:float 6s linear infinite;
 }
 
+/* cursor sparkle */
 .cursor{
   position:fixed;
   width:6px;
   height:6px;
-  background:white;
+  background:#fff;
   border-radius:50%;
   pointer-events:none;
-  animation:fadeOut 0.8s forwards;
+  animation:fadeOut .8s forwards;
 }
 
-@keyframes fadeOut{
+/* animations */
+@keyframes bounce{
+  0%,100%{
+    height:10px;
+  }
+
+  50%{
+    height:28px;
+  }
+}
+
+@keyframes heartFloat{
+  from{
+    transform:translateY(100vh);
+  }
+
   to{
-    opacity:0;
-    transform:scale(2);
+    transform:translateY(-120px);
   }
 }
 
@@ -382,6 +393,13 @@ h1{
   }
 }
 
+@keyframes fadeOut{
+  to{
+    opacity:0;
+    transform:scale(2);
+  }
+}
+
 @keyframes pageFade{
   from{
     opacity:0;
@@ -404,22 +422,6 @@ h1{
   }
 }
 
-.card *{
-  animation:smoothIn 1s ease;
-}
-
-@keyframes smoothIn{
-  from{
-    opacity:0;
-    transform:translateY(10px);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
 ::-webkit-scrollbar{
   width:6px;
 }
@@ -427,6 +429,25 @@ h1{
 ::-webkit-scrollbar-thumb{
   background:#ffffff55;
   border-radius:10px;
+}
+
+/* mobile */
+@media(max-width:480px){
+
+  body{
+    padding:16px;
+  }
+
+  .card{
+    max-width:100%;
+    padding:26px 20px;
+  }
+
+  .profile{
+    width:100px;
+    height:100px;
+  }
+
 }
 
 </style>
@@ -454,15 +475,18 @@ h1{
 <p class="bio" id="typing"></p>
 
 <a class="btn" href="https://www.instagram.com/anzhhraa?igsh=MWdkNzQzZG51NGd6aA==" target="_blank">
-<i class="fa-brands fa-instagram"></i> instagram
+<i class="fa-brands fa-instagram"></i>
+instagram
 </a>
 
 <a class="btn" href="https://www.tiktok.com/@nissazhhra?_r=1&_t=ZS-960b499ZZZp" target="_blank">
-<i class="fa-brands fa-tiktok"></i> tiktok
+<i class="fa-brands fa-tiktok"></i>
+tiktok
 </a>
 
 <a class="btn" href="https://open.spotify.com/playlist/275BjDZPESy8VYZ2D0aKrc?si=21cc069680c54a86" target="_blank">
-<i class="fa-brands fa-spotify"></i> spotify
+<i class="fa-brands fa-spotify"></i>
+spotify
 </a>
 
 <button class="music-btn" onclick="toggleMusic()">
@@ -537,18 +561,21 @@ message sent ♡
 <script>
 
 /* typing */
-const text = "welcome to my dreamy little space ♡";
+const text =
+"welcome to my dreamy little space ♡";
+
 let i = 0;
 
 function type(){
 
 if(i < text.length){
 
-document.getElementById("typing").innerHTML += text.charAt(i);
+document.getElementById("typing").innerHTML +=
+text.charAt(i);
 
 i++;
 
-setTimeout(type, 50);
+setTimeout(type,50);
 
 }
 
@@ -559,13 +586,14 @@ type();
 /* music */
 function toggleMusic(){
 
-const m = document.getElementById("music");
+const m =
+document.getElementById("music");
 
 if(m.paused){
 
 m.play();
 
-} else {
+}else{
 
 m.pause();
 
@@ -573,51 +601,17 @@ m.pause();
 
 }
 
-window.addEventListener("click", ()=>{
+/* autoplay fallback */
+window.addEventListener("click",()=>{
 
-const m = document.getElementById("music");
+const m =
+document.getElementById("music");
 
 m.play().catch(()=>{});
 
-});
+},{ once:true });
 
-/* parallax */
-const bg = document.getElementById("bg");
-
-document.addEventListener("mousemove", (e)=>{
-
-const x = (e.clientX / window.innerWidth - 0.5) * 10;
-
-const y = (e.clientY / window.innerHeight - 0.5) * 10;
-
-bg.style.transform =
-`scale(1.1) translate(${x}px, ${y}px)`;
-
-});
-
-/* cursor sparkle */
-document.addEventListener("mousemove", (e)=>{
-
-const sparkle =
-document.createElement("div");
-
-sparkle.className = "cursor";
-
-sparkle.style.left = e.clientX + "px";
-
-sparkle.style.top = e.clientY + "px";
-
-document.body.appendChild(sparkle);
-
-setTimeout(()=>{
-
-sparkle.remove();
-
-},800);
-
-});
-
-/* auto changing quotes */
+/* quote */
 const quotes = [
 
 "stay soft but powerful",
@@ -646,9 +640,9 @@ quoteIndex =
 
 changeQuote();
 
-setInterval(changeQuote, 4000);
+setInterval(changeQuote,4000);
 
-/* realtime clock */
+/* clock */
 function updateClock(){
 
 const now = new Date();
@@ -661,25 +655,6 @@ now.toLocaleTimeString();
 setInterval(updateClock,1000);
 
 updateClock();
-
-/* click sound */
-const clickAudio = new Audio(
-"https://www.myinstants.com/media/sounds/mouse-click.mp3"
-);
-
-document.querySelectorAll(
-".btn,.music-btn,.send-btn"
-).forEach(btn=>{
-
-btn.addEventListener("click", ()=>{
-
-clickAudio.currentTime = 0;
-
-clickAudio.play().catch(()=>{});
-
-});
-
-});
 
 /* popup */
 function showPopup(){
@@ -697,8 +672,48 @@ popup.classList.remove("show");
 
 }
 
+/* cursor sparkle */
+document.addEventListener("mousemove",(e)=>{
+
+const sparkle =
+document.createElement("div");
+
+sparkle.className = "cursor";
+
+sparkle.style.left = e.clientX + "px";
+
+sparkle.style.top = e.clientY + "px";
+
+document.body.appendChild(sparkle);
+
+setTimeout(()=>{
+
+sparkle.remove();
+
+},800);
+
+});
+
+/* parallax */
+const bg =
+document.getElementById("bg");
+
+document.addEventListener("mousemove",(e)=>{
+
+const x =
+(e.clientX / window.innerWidth - .5) * 10;
+
+const y =
+(e.clientY / window.innerHeight - .5) * 10;
+
+bg.style.transform =
+`scale(1.1) translate(${x}px, ${y}px)`;
+
+});
+
 </script>
 
 </body>
 </html>
 ```
+
